@@ -9,29 +9,27 @@ __docformat__ = "restructuredtext en"
 
 from zope import interface
 
+from .schema import Number
+
 class ICreatedTime(interface.Interface):
 	"""
 	Something that (immutably) tracks its created time.
 	"""
 
-	createdTime = interface.Attribute(u"The timestamp at which this object was created.")
+	createdTime = Number(title=u"The timestamp at which this object was created.",
+						 description="Typically set automatically by the object.",
+						 default=0.0)
 
 class ILastModified(ICreatedTime):
 	"""
 	Something that tracks a modification timestamp.
 	"""
 
-	lastModified = interface.Attribute("The timestamp at which this object or its contents was last modified.")
+	lastModified = Number(title=u"The timestamp at which this object or its contents was last modified.",
+						  default=0.0)
 
 class ICreated(interface.Interface):
 	"""
 	Something created by an identified entity.
 	"""
 	creator = interface.Attribute("The creator of this object.")
-
-class ITitled(interface.Interface):
-	"""
-	A piece of content with a title, either human created or potentially
-	automatically generated. (This differs from, say, a person's honorrific title.
-	"""
-	title = interface.Attribute("The title of this object.")

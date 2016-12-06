@@ -13,8 +13,10 @@ import time
 
 from zope import interface
 
+from .interfaces import ICreatedTime
 from .interfaces import ILastModified
 
+@interface.implementer(ICreatedTime)
 class CreatedTimeMixin(object):
 
 	_SET_CREATED_MODTIME_ON_INIT = True
