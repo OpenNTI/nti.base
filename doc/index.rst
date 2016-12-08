@@ -1,6 +1,6 @@
 
 ===========
- nti.property:
+ nti.base:
 ===========
 
 Contents:
@@ -8,10 +8,10 @@ Contents:
 .. toctree::
    :maxdepth: 1
 
-   nti.property
+   nti.base
    changelog
 
-.. automodule:: nti.property
+.. automodule:: nti.base
     :members:
     :undoc-members:
     :show-inheritance:
