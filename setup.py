@@ -27,7 +27,7 @@ setup(
     description="NTI Base",
     long_description=_read('README.rst'),
     license='Apache',
-    keywords='Property',
+    keywords='Base',
     classifiers=[
         'Intended Audience :: Developers',
         'Natural Language :: English',
