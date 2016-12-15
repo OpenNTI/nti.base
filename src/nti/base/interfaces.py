@@ -33,3 +33,31 @@ class ICreated(interface.Interface):
 	Something created by an identified entity.
 	"""
 	creator = interface.Attribute("The creator of this object.")
+
+class ILastViewed(ILastModified):
+	"""
+	In addition to tracking modification and creation times, this
+	object tracks viewing (or access) times.
+
+	For security sensitive objects, this may be set automatically in
+	an audit-log type fashion. The most typical use, however, will be
+	to allow clients to track whether or not the item has been
+	displayed to the end user since its last modification; in that
+	case, the client will be responsible for updating the value seen
+	here explicitly (we can not assume that requesting an object for
+	externalization, for example, results in viewing).
+
+	In some cases it may be necessary to supplement this object with
+	additional information such as a counter to get the desired
+	behaviour.
+	"""
+	# There is no zope.dublincore analoge for this.
+	lastViewed = Number(title="The timestamp at which this object was last viewed.",
+						default=0.0)
+
+class ITitled(interface.Interface):
+	"""
+	A piece of content with a title, either human created or potentially
+	automatically generated. (This differs from, say, a person's honorrific title.
+	"""
+	title = interface.Attribute("The title of this object.")
