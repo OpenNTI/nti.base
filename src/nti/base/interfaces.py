@@ -61,3 +61,9 @@ class ITitled(interface.Interface):
 	automatically generated. (This differs from, say, a person's honorrific title.
 	"""
 	title = interface.Attribute("The title of this object.")
+
+class INamed(interface.Interface):
+	"""
+	An item with a filename
+	"""
+	filename = interface.Attribute("The filename.")
