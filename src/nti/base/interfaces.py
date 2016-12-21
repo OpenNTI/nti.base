@@ -67,3 +67,14 @@ class INamed(interface.Interface):
 	An item with a filename
 	"""
 	filename = interface.Attribute("The filename.")
+
+class IFile(interface.Interface):
+
+	contentType = interface.Attribute("The content type identifies the type of data.")
+
+	data = interface.Attribute("The actual content of the object.")
+
+	def getSize():
+		"""
+		Return the byte-size of the data of the object.
+		"""
