@@ -86,3 +86,9 @@ class IFile(interface.Interface):
         """
         Return the byte-size of the data of the object.
         """
+
+
+class IContentTypeMarker(interface.Interface):
+    """
+    Marker interface for deriving mimetypes from class names.
+    """
