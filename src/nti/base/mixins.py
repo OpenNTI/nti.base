@@ -13,8 +13,8 @@ import time
 
 from zope import interface
 
-from .interfaces import ICreatedTime
-from .interfaces import ILastModified
+from nti.base.interfaces import ICreatedTime
+from nti.base.interfaces import ILastModified
 
 
 @interface.implementer(ICreatedTime)

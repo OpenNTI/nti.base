@@ -9,7 +9,7 @@ __docformat__ = "restructuredtext en"
 
 from zope import interface
 
-from .schema import Number
+from nti.base.schema import Number
 
 
 class ICreatedTime(interface.Interface):
