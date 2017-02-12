@@ -27,14 +27,22 @@ else:
     integer_types = (int, long)
     class_types = (type, types.ClassType)
 
-if PY3: # pragma: no cover
-    _unicode = unicode
-else:
+if PY3:  # pragma: no cover
     _unicode = lambda s: s
+else:
+    _unicode = unicode
 
-def to_unicode(s, encoding='utf-8', err='strict'):
+
+def bytes_(s, encoding='latin-1', errors='strict'):  # pragma NO COVER
+    if isinstance(s, text_type):
+        return s.encode(encoding, errors)
+    return s
+
+
+def unicode_(s, encoding='utf-8', err='strict'):
     """
     Decode a byte sequence and unicode result
     """
     s = s.decode(encoding, err) if isinstance(s, bytes) else s
     return _unicode(s) if s is not None else None
+to_unicode = unicode_
