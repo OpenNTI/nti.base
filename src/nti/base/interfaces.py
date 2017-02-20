@@ -88,6 +88,12 @@ class IFile(interface.Interface):
         """
 
 
+class IConstrained(interface.Interface):
+    """
+    Marker interface for objects that are constrained
+    """
+
+
 class IContentTypeMarker(interface.Interface):
     """
     Marker interface for deriving mimetypes from class names.
