@@ -38,8 +38,7 @@ class ModifiedTimeMixin(object):
         super(ModifiedTimeMixin, self).__init__(*args, **kwargs)
 
     def updateLastMod(self, t=None):
-        self.lastModified = (
-            t if t is not None and t > self.lastModified else time.time())
+        self.lastModified = (t if t is not None and t > self.lastModified else time.time())
         return self.lastModified
 
     def updateLastModIfGreater(self, t):
