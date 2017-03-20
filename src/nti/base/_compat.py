@@ -20,14 +20,20 @@ integer_types = six.integer_types
 
 if PY3:  # pragma: no cover
     _unicode = lambda s: s
+
+    def bytes_(s, encoding='utf-8', errors='strict'):
+        if isinstance(s, text_type):
+            return s
+        return str(s, encoding, errors)
+    native_ = bytes_
 else:
     _unicode = unicode
 
-
-def bytes_(s, encoding='utf-8', errors='strict'):  # pragma NO COVER
-    if isinstance(s, text_type):
-        return s.encode(encoding, errors)
-    return s
+    def bytes_(s, encoding='utf-8', errors='strict'):
+        if isinstance(s, text_type):
+            return s.encode(encoding, errors)
+        return s
+    native_ = bytes_
 
 
 def unicode_(s, encoding='utf-8', err='strict'):
