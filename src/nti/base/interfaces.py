@@ -88,6 +88,10 @@ class IFile(interface.Interface):
         """
 
 
+class INamedFile(INamed, IFile):
+    pass
+
+
 class IConstrained(interface.Interface):
     """
     Marker interface for objects that are constrained
