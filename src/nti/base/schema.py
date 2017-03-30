@@ -70,7 +70,8 @@ class FieldValidationMixin(object):
             # args[0] will either be a list of Exceptions or a list of tuples, (name, exception),
             # depending who did the validating (dm.zope.schema doing the later)
             e.errors = [
-                arg[1] if isinstance(arg, tuple) else arg for arg in e.args[0]]
+                arg[1] if isinstance(arg, tuple) else arg for arg in e.args[0]
+            ]
             e.value = value
             e.field = self
             raise

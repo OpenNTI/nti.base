@@ -7,10 +7,14 @@ __docformat__ = "restructuredtext en"
 # disable: accessing protected members, too many methods
 # pylint: disable=W0212,R0904
 
-from hamcrest import is_not
-does_not = is_not
+from hamcrest import is_
+from hamcrest import assert_that
 
 import unittest
+
+from zope.schema.interfaces import SchemaNotProvided
+
+from nti.base.schema import FieldValidationMixin
 
 from nti.base.tests import SharedConfiguringTestLayer
 
@@ -43,3 +47,23 @@ class TestSchema(unittest.TestCase):
         field.validate(10)
         field.validate(0)
         field.validate(1000.0003)
+        
+    def test_one_arg(self):
+        field = FieldValidationMixin()
+        field.__name__ = 'foo'
+
+        ex = SchemaNotProvided('msg')
+        try:
+            field._reraise_validation_error(ex, 'value', _raise=True)
+        except SchemaNotProvided:
+            assert_that(ex.args, is_(('value', 'msg', 'foo')))
+
+    def test_no_arg(self):
+        field = FieldValidationMixin()
+        field.__name__ = 'foo'
+
+        ex = SchemaNotProvided()
+        try:
+            field._reraise_validation_error(ex, 'value', _raise=True)
+        except SchemaNotProvided:
+            assert_that(ex.args, is_(('value', '', 'foo')))
