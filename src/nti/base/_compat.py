@@ -30,8 +30,7 @@ def bytes_(s, encoding='utf-8', errors='strict'):
     """
     if isinstance(s, text_type):
         return s.encode(encoding, errors)
-    return s
-native_ = bytes_
+    return str(s)
 
 
 def unicode_(s, encoding='utf-8', err='strict'):
