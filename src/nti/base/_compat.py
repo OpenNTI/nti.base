@@ -14,6 +14,7 @@ import six
 PY3 = six.PY3
 
 text_type = six.text_type
+binary_type = six.binary_type
 class_types = six.class_types
 string_types = six.string_types
 integer_types = six.integer_types
