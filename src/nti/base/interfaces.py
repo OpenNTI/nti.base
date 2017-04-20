@@ -4,7 +4,7 @@
 .. $Id: interfaces.py 96516 2016-09-09 14:55:16Z carlos.sanchez $
 """
 
-from __future__ import print_function, unicode_literals, absolute_import, division
+from __future__ import print_function, absolute_import, division
 __docformat__ = "restructuredtext en"
 
 from zope import interface
@@ -18,7 +18,7 @@ class ICreatedTime(interface.Interface):
     """
 
     createdTime = Number(title=u"The timestamp at which this object was created.",
-                         description="Typically set automatically by the object.",
+                         description=u"Typically set automatically by the object.",
                          default=0.0)
 
 
@@ -35,7 +35,7 @@ class ICreated(interface.Interface):
     """
     Something created by an identified entity.
     """
-    creator = interface.Attribute("The creator of this object.")
+    creator = interface.Attribute(u"The creator of this object.")
 
 
 class ILastViewed(ILastModified):
@@ -56,7 +56,7 @@ class ILastViewed(ILastModified):
     behaviour.
     """
     # There is no zope.dublincore analoge for this.
-    lastViewed = Number(title="The timestamp at which this object was last viewed.",
+    lastViewed = Number(title=u"The timestamp at which this object was last viewed.",
                         default=0.0)
 
 
@@ -65,22 +65,22 @@ class ITitled(interface.Interface):
     A piece of content with a title, either human created or potentially
     automatically generated. (This differs from, say, a person's honorrific title.
     """
-    title = interface.Attribute("The title of this object.")
+    title = interface.Attribute(u"The title of this object.")
 
 
 class INamed(interface.Interface):
     """
     An item with a filename
     """
-    filename = interface.Attribute("The filename.")
+    filename = interface.Attribute(u"The filename.")
 
 
 class IFile(interface.Interface):
 
     contentType = interface.Attribute(
-        "The content type identifies the type of data.")
+        u"The content type identifies the type of data.")
 
-    data = interface.Attribute("The actual content of the object.")
+    data = interface.Attribute(u"The actual content of the object.")
 
     def getSize():
         """
