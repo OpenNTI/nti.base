@@ -26,6 +26,7 @@ if PY3:  # pragma: no cover
 else:
     _unicode = unicode
 
+
 def bytes_(s, encoding='utf-8', errors='strict'):
     """
     If ``s`` is an instance of ``text_type``, return
@@ -84,6 +85,7 @@ else:
     im_func = 'im_func'
     im_self = 'im_self'
 
+
 def is_bound_method(ob):
     return inspect.ismethod(ob) and getattr(ob, im_self, None) is not None
 
@@ -92,6 +94,7 @@ try:
     from inspect import getfullargspec as getargspec
 except ImportError:
     from inspect import getargspec
+
 
 def is_unbound_method(fn):
     """
