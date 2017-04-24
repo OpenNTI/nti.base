@@ -54,5 +54,5 @@ setup(
         'test': TESTS_REQUIRE,
     },
     entry_points=entry_points,
-    test_suite="nti.zodb.tests",
+    test_suite="nti.base.tests",
 )
