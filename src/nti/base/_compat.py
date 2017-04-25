@@ -37,13 +37,13 @@ def bytes_(s, encoding='utf-8', errors='strict'):
     return s
 
 
-def unicode_(s, encoding='utf-8', err='strict'):
+def text_(s, encoding='utf-8', err='strict'):
     """
     Decode a byte sequence and unicode result
     """
     s = s.decode(encoding, err) if isinstance(s, bytes) else s
     return _unicode(s) if s is not None else None
-text_ = to_unicode = unicode_
+unicode_ = to_unicode = text_
 
 
 if PY3:
