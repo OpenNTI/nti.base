@@ -14,8 +14,8 @@ does_not = is_not
 
 import unittest
 
+from nti.base._compat import text_
 from nti.base._compat import bytes_
-from nti.base._compat import unicode_
 
 from nti.base.tests import SharedConfiguringTestLayer
 
@@ -26,4 +26,4 @@ class TestCompat(unittest.TestCase):
 
     def test_bytes(self):
         assert_that(bytes_(u'\u2019'), is_(b'\xe2\x80\x99'))
-        assert_that(unicode_(b'\xe2\x80\x99'), is_(u'\u2019'))
+        assert_that(text_(b'\xe2\x80\x99'), is_(u'\u2019'))
