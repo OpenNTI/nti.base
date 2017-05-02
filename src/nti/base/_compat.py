@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-.. $Id: _compat.py 103172 2016-12-22 14:53:57Z carlos.sanchez $
+.. $Id$
 """
 
 from __future__ import print_function, absolute_import, division

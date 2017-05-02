@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-.. $Id: schema.py 101923 2016-12-05 00:21:48Z carlos.sanchez $
+.. $Id$
 """
 
 from __future__ import print_function, absolute_import, division
