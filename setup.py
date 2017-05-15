@@ -47,6 +47,8 @@ setup(
         'setuptools',
         'six',
         'zope.component',
+        'zope.deferredimport',
+        'zope.deprecation',
         'zope.interface',
         'zope.schema'
     ],
