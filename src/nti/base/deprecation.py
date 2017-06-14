@@ -38,12 +38,11 @@ def deprecated(replacement=None):  # annotation factory
 
 zope.deprecation.deprecation.__dict__['DeprecationWarning'] = FutureWarning
 
+
 # The 'moved' method doesn't pay attention to the 'show' flag, which
 # produces annoyances in backwards compatibility and test code. Make it do so.
 # The easiest way os to patch the warnings module it uses. Fortunately, it only
 # uses one method
-
-
 class _warnings(object):
 
     def warn(self, msg, typ, stacklevel=0):
@@ -56,18 +55,14 @@ class _warnings(object):
 
 zope.deprecation.deprecation.__dict__['warnings'] = _warnings()
 
-# encourage importing from here so we're sure our patch is applied
-moved = zope.deprecation.moved
-
 # deferred import has the same problems
 zope.deferredimport.deferredmodule.__dict__['warnings'] = _warnings()
 zope.deferredimport.deferredmodule.__dict__['DeprecationWarning'] = FutureWarning
 
+
 # NOTE: There is a substantial problem with zope.deferredimport.deferredmodule/deprecatedFrom
 # and the like: it loses access to the module __doc__, which makes Sphinx and the like useless
 # For this reason, prefer zope.deprecation.
-
-
 class hiding_warnings(object):
     """
     A context manager that executes its body in a context
@@ -94,6 +89,10 @@ def hides_warnings(f):
 
 
 def moved(from_location, to_location):
+    """
+    similar to zope.deprecation.moved but modules are created
+    automatically if they don't exist
+    """
     try:
         __import__(from_location)
     except ImportError:

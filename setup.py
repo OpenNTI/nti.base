@@ -8,7 +8,6 @@ entry_points = {
 
 TESTS_REQUIRE = [
     'nti.testing',
-    'pyhamcrest',
     'zope.testrunner',
 ]
 
@@ -16,6 +15,7 @@ TESTS_REQUIRE = [
 def _read(fname):
     with codecs.open(fname, encoding='utf-8') as f:
         return f.read()
+
 
 setup(
     name='nti.base',
@@ -56,5 +56,4 @@ setup(
         'test': TESTS_REQUIRE,
     },
     entry_points=entry_points,
-    test_suite="nti.base.tests",
 )
