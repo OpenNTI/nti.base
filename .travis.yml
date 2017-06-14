@@ -3,7 +3,7 @@ sudo: false
 python:
   - 2.7
   - 3.6
-  - pypy-5.4.1
+  - pypy-5.8.0
 dist: trusty
 script:
   - coverage run -m zope.testrunner --test-path=src  --auto-color --auto-progress --all
