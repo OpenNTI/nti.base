@@ -110,7 +110,8 @@ class IContentTypeMarker(interface.Interface):
     Marker interface for deriving mimetypes from class names.
     """
 
-# dolmen.builtins
+
+# builtins
 
 
 class IBytes(Interface):
@@ -131,7 +132,6 @@ class IUnicode(Interface):
     """
     Marker interface for mutable unicode strings.
     """
-
 
 if six.PY3:
     classImplements(str, IUnicode)
