@@ -13,8 +13,9 @@ import six
 
 from zope import interface
 
-from zope.interface import Interface, classImplements
-
+from zope.interface import Interface
+from zope.interface import classImplements
+ 
 from nti.base.schema import Number
 
 
