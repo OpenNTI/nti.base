@@ -125,7 +125,7 @@ class IString(Interface):
     """
     Marker interface for mutable strings.
     """
-classImplements(bytes, IString)
+classImplements(str, IString)
 
 
 class IUnicode(Interface):
