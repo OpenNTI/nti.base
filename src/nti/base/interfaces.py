@@ -11,15 +11,14 @@ logger = __import__('logging').getLogger(__name__)
 
 import six
 
-from zope import interface
-
+from zope.interface import Attribute
 from zope.interface import Interface
 from zope.interface import classImplements
- 
+
 from nti.base.schema import Number
 
 
-class ICreatedTime(interface.Interface):
+class ICreatedTime(Interface):
     """
     Something that (immutably) tracks its created time.
     """
@@ -38,11 +37,11 @@ class ILastModified(ICreatedTime):
                           default=0.0)
 
 
-class ICreated(interface.Interface):
+class ICreated(Interface):
     """
     Something created by an identified entity.
     """
-    creator = interface.Attribute(u"The creator of this object.")
+    creator = Attribute(u"The creator of this object.")
 
 
 class ILastViewed(ILastModified):
@@ -67,27 +66,26 @@ class ILastViewed(ILastModified):
                         default=0.0)
 
 
-class ITitled(interface.Interface):
+class ITitled(Interface):
     """
     A piece of content with a title, either human created or potentially
     automatically generated. (This differs from, say, a person's honorrific title.
     """
-    title = interface.Attribute(u"The title of this object.")
+    title = Attribute(u"The title of this object.")
 
 
-class INamed(interface.Interface):
+class INamed(Interface):
     """
     An item with a filename
     """
-    filename = interface.Attribute(u"The filename.")
+    filename = Attribute(u"The filename.")
 
 
-class IFile(interface.Interface):
+class IFile(Interface):
 
-    contentType = interface.Attribute(
-        u"The content type identifies the type of data.")
+    contentType = Attribute(u"The content type identifies the type of data.")
 
-    data = interface.Attribute(u"The actual content of the object.")
+    data = Attribute(u"The actual content of the object.")
 
     def getSize():
         """
@@ -99,13 +97,13 @@ class INamedFile(INamed, IFile):
     pass
 
 
-class IConstrained(interface.Interface):
+class IConstrained(Interface):
     """
     Marker interface for objects that are constrained
     """
 
 
-class IContentTypeMarker(interface.Interface):
+class IContentTypeMarker(Interface):
     """
     Marker interface for deriving mimetypes from class names.
     """
@@ -113,36 +111,40 @@ class IContentTypeMarker(interface.Interface):
 
 # builtins
 
+try:
+    from nti.contentfragments.interfaces import IBytes
+    from nti.contentfragments.interfaces import IString
+    from nti.contentfragments.interfaces import IUnicode
+except ImportError:
+    class IBytes(Interface):
+        """
+        Marker interface for bytes.
+        """
+    classImplements(bytes, IBytes)
 
-class IBytes(Interface):
-    """
-    Marker interface for bytes.
-    """
-classImplements(bytes, IBytes)
+    class IString(Interface):
+        """
+        Marker interface for mutable strings.
+        """
+    classImplements(str, IString)
 
+    class IUnicode(Interface):
+        """
+        Marker interface for mutable unicode strings.
+        """
 
-class IString(Interface):
-    """
-    Marker interface for mutable strings.
-    """
-classImplements(str, IString)
-
-
-class IUnicode(Interface):
-    """
-    Marker interface for mutable unicode strings.
-    """
-
-if six.PY3:
-    classImplements(str, IUnicode)
-else:
-    classImplements(unicode, IUnicode)
+    if six.PY3:
+        classImplements(str, IUnicode)
+    else:
+        classImplements(unicode, IUnicode)
 
 
 class INumeric(Interface):
     """
     Marker interface for a numeric value.
     """
+
+
 classImplements(int, INumeric)
 classImplements(float, INumeric)
 
@@ -154,6 +156,8 @@ class IBoolean(Interface):
     """
     Marker interface for a boolean.
     """
+
+
 classImplements(bool, IBoolean)
 
 
@@ -171,6 +175,8 @@ class IList(IIterable):
     """
     Marker interface for lists
     """
+
+
 classImplements(list, IList)
 
 
@@ -178,6 +184,8 @@ class ITuple(IIterable):
     """
     Marker interface for immutable lists
     """
+
+
 classImplements(tuple, ITuple)
 
 
@@ -207,6 +215,8 @@ class IDict(IIterable):
         Returns a boolean, True if the key exists in the dict,
         False otherwise.
         """
+
+
 classImplements(dict, IDict)
 
 
