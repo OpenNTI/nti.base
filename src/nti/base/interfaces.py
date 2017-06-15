@@ -143,8 +143,6 @@ class INumeric(Interface):
     """
     Marker interface for a numeric value.
     """
-
-
 classImplements(int, INumeric)
 classImplements(float, INumeric)
 
@@ -156,8 +154,6 @@ class IBoolean(Interface):
     """
     Marker interface for a boolean.
     """
-
-
 classImplements(bool, IBoolean)
 
 
@@ -175,8 +171,6 @@ class IList(IIterable):
     """
     Marker interface for lists
     """
-
-
 classImplements(list, IList)
 
 
@@ -184,8 +178,6 @@ class ITuple(IIterable):
     """
     Marker interface for immutable lists
     """
-
-
 classImplements(tuple, ITuple)
 
 
@@ -215,8 +207,6 @@ class IDict(IIterable):
         Returns a boolean, True if the key exists in the dict,
         False otherwise.
         """
-
-
 classImplements(dict, IDict)
 
 
