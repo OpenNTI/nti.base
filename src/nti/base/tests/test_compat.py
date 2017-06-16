@@ -17,12 +17,8 @@ import unittest
 from nti.base._compat import text_
 from nti.base._compat import bytes_
 
-from nti.base.tests import NTIBaseLayer
-
 
 class TestCompat(unittest.TestCase):
-
-    layer = NTIBaseLayer
 
     def test_bytes(self):
         assert_that(bytes_(u'\u2019'), is_(b'\xe2\x80\x99'))

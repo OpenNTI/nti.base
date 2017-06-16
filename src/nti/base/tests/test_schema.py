@@ -16,12 +16,8 @@ from zope.schema.interfaces import SchemaNotProvided
 
 from nti.base.schema import FieldValidationMixin
 
-from nti.base.tests import NTIBaseLayer
-
 
 class TestSchema(unittest.TestCase):
-
-    layer = NTIBaseLayer
 
     def _getTargetClass(self):
         from nti.base.schema import Number
