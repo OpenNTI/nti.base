@@ -16,12 +16,8 @@ from zope.schema.interfaces import SchemaNotProvided
 
 from nti.base.schema import FieldValidationMixin
 
-from nti.base.tests import SharedConfiguringTestLayer
-
 
 class TestSchema(unittest.TestCase):
-
-    layer = SharedConfiguringTestLayer
 
     def _getTargetClass(self):
         from nti.base.schema import Number

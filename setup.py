@@ -8,7 +8,6 @@ entry_points = {
 
 TESTS_REQUIRE = [
     'pyhamcrest',
-    'nti.testing',
     'zope.testing',
     'zope.testrunner',
 ]

@@ -24,12 +24,8 @@ from nti.base.interfaces import ILastModified
 
 from nti.base.mixins import CreatedAndModifiedTimeMixin
 
-from nti.base.tests import SharedConfiguringTestLayer
-
 
 class TestMixins(unittest.TestCase):
-
-    layer = SharedConfiguringTestLayer
 
     def test_plus_extend(self):
         c = CreatedAndModifiedTimeMixin()

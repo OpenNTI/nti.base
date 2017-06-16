@@ -24,12 +24,8 @@ from nti.base.interfaces import INumeric
 from nti.base.interfaces import IUnicode
 from nti.base.interfaces import IIterable
 
-from nti.base.tests import SharedConfiguringTestLayer
-
 
 class TestInterfaces(unittest.TestCase):
-
-    layer = SharedConfiguringTestLayer
 
     def test_dolmen_builtins(self):
         sample = b"Tis' a very nice string."
