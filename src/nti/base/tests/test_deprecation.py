@@ -20,11 +20,12 @@ import unittest
 
 from nti.base.deprecation import moved
 
-from nti.base.tests import SharedConfiguringTestLayer
+from nti.base.tests import NTIBaseLayer
+
 
 class TestDeprecation(unittest.TestCase):
 
-    layer = SharedConfiguringTestLayer
+    layer = NTIBaseLayer
 
     def test_moved(self):
         old = moved('nti.base.oldmixins', 'nti.base.mixins')
