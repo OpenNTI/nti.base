@@ -74,6 +74,13 @@ class ITitled(Interface):
     title = Attribute(u"The title of this object.")
 
 
+class ITitledDescribed(ITitled):
+    """
+    A piece of content with a title and description
+    """
+    description = Attribute(u"The human-readable description of this object.")
+
+
 class INamed(Interface):
     """
     An item with a filename
