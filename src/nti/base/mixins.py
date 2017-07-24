@@ -65,10 +65,9 @@ class CreatedAndModifiedTimeMixin(CreatedTimeMixin, ModifiedTimeMixin):
 @interface.implementer(INamedFile)
 class FileMixin(CreatedAndModifiedTimeMixin):
 
-    filename = None
-    contentType = None
-
-    def __init__(self, *args, **kwargs):
+    def __init__(self, contentType='', filename=None, *args, **kwargs):
+        self.filename = filename
+        self.contentType = contentType
         super(FileMixin, self).__init__(*args, **kwargs)
         
     @property
