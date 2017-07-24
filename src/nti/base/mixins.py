@@ -68,10 +68,12 @@ class FileMixin(CreatedAndModifiedTimeMixin):
     filename = None
     contentType = None
 
+    def __init__(self, *args, **kwargs):
+        super(FileMixin, self).__init__(*args, **kwargs)
+        
     @property
     def length(self):
         return self.getSize()
-    size = length
 
     def getSize(self):
         raise NotImplementedError()
