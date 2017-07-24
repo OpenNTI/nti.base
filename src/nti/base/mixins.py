@@ -13,6 +13,7 @@ import time
 
 from zope import interface
 
+from nti.base.interfaces import INamedFile
 from nti.base.interfaces import ICreatedTime
 from nti.base.interfaces import ILastModified
 
@@ -59,3 +60,18 @@ class CreatedAndModifiedTimeMixin(CreatedTimeMixin, ModifiedTimeMixin):
             self.createdTime = time.time()
             self.updateLastModIfGreater(self.createdTime)
         super(CreatedAndModifiedTimeMixin, self).__init__(*args, **kwargs)
+
+
+@interface.implementer(INamedFile)
+class FileMixin(CreatedAndModifiedTimeMixin):
+
+    filename = None
+    contentType = None
+
+    @property
+    def length(self):
+        return self.getSize()
+    size = length
+
+    def getSize(self):
+        raise NotImplementedError()
