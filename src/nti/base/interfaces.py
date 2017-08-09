@@ -17,6 +17,9 @@ from zope.interface import classImplements
 
 from nti.base.schema import Number
 
+#: Default content type
+DEFAULT_CONTENT_TYPE = 'application/octet-stream'
+
 
 class ICreatedTime(Interface):
     """
