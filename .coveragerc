@@ -1,7 +1,6 @@
 [run]
 source = nti.base
 
-
 [report]
 exclude_lines =
     pragma: no cover
