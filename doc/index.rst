@@ -1,25 +1,16 @@
 
-===========
- nti.base:
-===========
-
-Contents:
+.. include:: ../README.rst
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
+   :caption: Contents:
 
-   nti.base
+   api
    changelog
 
-.. automodule:: nti.base
-    :members:
-    :undoc-members:
-    :show-inheritance:
 
-
-====================
- Indices and tables
-====================
+Indices and tables
+==================
 
 * :ref:`genindex`
 * :ref:`modindex`
