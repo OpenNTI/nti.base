@@ -12,11 +12,6 @@ Interfaces
 
 .. automodule:: nti.base.interfaces
 
-Utilities
-=========
-
-.. automodule:: nti.base
-
 Deprecation
 ===========
 
@@ -28,6 +23,6 @@ Mixins
 .. automodule:: nti.base.mixins
 
 Schema
-============
+======
 
 .. automodule:: nti.base.schema
