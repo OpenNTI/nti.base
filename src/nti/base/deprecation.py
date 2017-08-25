@@ -72,7 +72,7 @@ class hiding_warnings(object):
     def __enter__(self):
         zope.deprecation.__show__.off()
 
-    def __exit__(self, *args):
+    def __exit__(self, *unused_args):
         zope.deprecation.__show__.on()
 
 
