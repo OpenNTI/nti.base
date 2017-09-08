@@ -3,19 +3,19 @@
 ===========
 
 Compat
-==========
+======
 
 .. automodule:: nti.base._compat
-
-Interfaces
-==========
-
-.. automodule:: nti.base.interfaces
 
 Deprecation
 ===========
 
 .. automodule:: nti.base.deprecation
+
+Interfaces
+==========
+
+.. automodule:: nti.base.interfaces
 
 Mixins
 ======
