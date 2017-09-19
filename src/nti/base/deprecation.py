@@ -7,8 +7,6 @@
 from __future__ import print_function, absolute_import, division
 __docformat__ = "restructuredtext en"
 
-logger = __import__('logging').getLogger(__name__)
-
 import sys
 import types
 import warnings
@@ -17,6 +15,8 @@ import functools
 import zope.deferredimport.deferredmodule
 
 import zope.deprecation
+
+logger = __import__('logging').getLogger(__name__)
 
 
 def deprecated(replacement=None):  # annotation factory
