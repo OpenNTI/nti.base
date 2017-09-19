@@ -7,8 +7,6 @@
 from __future__ import print_function, absolute_import, division
 __docformat__ = "restructuredtext en"
 
-logger = __import__('logging').getLogger(__name__)
-
 import six
 
 from zope.interface import Attribute
@@ -19,6 +17,8 @@ from nti.base.schema import Number
 
 #: Default content type
 DEFAULT_CONTENT_TYPE = 'application/octet-stream'
+
+logger = __import__('logging').getLogger(__name__)
 
 
 class ICreatedTime(Interface):

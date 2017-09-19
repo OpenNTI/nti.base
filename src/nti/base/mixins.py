@@ -7,8 +7,6 @@
 from __future__ import print_function, absolute_import, division
 __docformat__ = "restructuredtext en"
 
-logger = __import__('logging').getLogger(__name__)
-
 import time
 
 from zope import interface
@@ -16,6 +14,8 @@ from zope import interface
 from nti.base.interfaces import INamedFile
 from nti.base.interfaces import ICreatedTime
 from nti.base.interfaces import ILastModified
+
+logger = __import__('logging').getLogger(__name__)
 
 
 @interface.implementer(ICreatedTime)

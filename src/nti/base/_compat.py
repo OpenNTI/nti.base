@@ -7,8 +7,6 @@
 from __future__ import print_function, absolute_import, division
 __docformat__ = "restructuredtext en"
 
-logger = __import__('logging').getLogger(__name__)
-
 import six
 import inspect
 
@@ -20,6 +18,8 @@ binary_type = six.binary_type
 class_types = six.class_types
 string_types = six.string_types
 integer_types = six.integer_types
+
+logger = __import__('logging').getLogger(__name__)
 
 if PY3:  # pragma: no cover
     def _unicode(s): return str(s)

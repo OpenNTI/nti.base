@@ -7,8 +7,6 @@
 from __future__ import print_function, absolute_import, division
 __docformat__ = "restructuredtext en"
 
-logger = __import__('logging').getLogger(__name__)
-
 import numbers
 
 from zope import schema
@@ -17,6 +15,8 @@ from zope.schema.interfaces import TooLong
 from zope.schema.interfaces import TooShort
 from zope.schema.interfaces import ValidationError
 from zope.schema.interfaces import WrongContainedType
+
+logger = __import__('logging').getLogger(__name__)
 
 
 class FieldValidationMixin(object):
