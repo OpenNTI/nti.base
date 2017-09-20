@@ -32,7 +32,7 @@ def bytes_(s, encoding='utf-8', errors='strict'):
     If ``s`` is an instance of ``text_type``, return
     ``s.encode(encoding, errors)``, otherwise return ``s``
     """
-    if isinstance(s, text_type):
+    if isinstance(s, six.text_type):
         return s.encode(encoding, errors)
     return s
 
@@ -48,12 +48,12 @@ unicode_ = to_unicode = text_
 
 if PY3:
     def ascii_native_(s):
-        if isinstance(s, text_type):
+        if isinstance(s, six.text_type):
             s = s.encode('ascii')
         return str(s, 'ascii', 'strict')
 else:
     def ascii_native_(s):
-        if isinstance(s, text_type):
+        if isinstance(s, six.text_type):
             s = s.encode('ascii')
         return str(s)
 
@@ -64,7 +64,7 @@ if PY3:
         If ``s`` is an instance of ``text_type``, return
         ``s``, otherwise return ``str(s, encoding, errors)``
         """
-        if isinstance(s, text_type):
+        if isinstance(s, six.text_type):
             return s
         return str(s, encoding, errors)
 else:
@@ -73,21 +73,14 @@ else:
         If ``s`` is an instance of ``text_type``, return
         ``s.encode(encoding, errors)``, otherwise return ``str(s)``
         """
-        if isinstance(s, text_type):
+        if isinstance(s, six.text_type):
             return s.encode(encoding, errors)
         return str(s)
 
 
-if PY3:
-    im_func = '__func__'
-    im_self = '__self__'
-else:
-    im_func = 'im_func'
-    im_self = 'im_self'
-
-
 def is_bound_method(ob):
-    return inspect.ismethod(ob) and getattr(ob, im_self, None) is not None
+    return inspect.ismethod(ob) \
+       and six.get_method_function(ob) is not None
 
 
 try:
