@@ -9,7 +9,6 @@ from __future__ import print_function
 from __future__ import absolute_import
 
 import six
-import inspect
 
 PY2 = six.PY2
 PY3 = six.PY3
