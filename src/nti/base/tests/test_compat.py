@@ -21,8 +21,6 @@ from nti.base._compat import bytes_
 from nti.base._compat import native_
 from nti.base._compat import ascii_native_
 
-def mock():
-    return True
 
 class TestCompat(unittest.TestCase):
 
