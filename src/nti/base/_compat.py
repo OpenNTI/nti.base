@@ -72,33 +72,3 @@ else:
         if isinstance(s, six.text_type):
             return s.encode(encoding, errors)
         return str(s)
-
-
-def is_bound_method(ob):
-    return inspect.ismethod(ob) \
-       and six.get_method_function(ob) is not None
-
-
-try:
-    from inspect import getfullargspec as getargspec
-except ImportError:
-    from inspect import getargspec
-
-
-def is_unbound_method(fn):
-    """
-    This consistently verifies that the callable is bound to a
-    class.
-    """
-    is_bound = is_bound_method(fn)
-
-    if not is_bound and inspect.isroutine(fn):
-        spec = getargspec(fn)
-        has_self = len(spec.args) > 0 and spec.args[0] == 'self'
-
-        if PY2 and inspect.ismethod(fn):
-            return True
-        elif inspect.isfunction(fn) and has_self:
-            return True
-
-    return False
