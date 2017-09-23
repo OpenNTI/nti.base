@@ -59,7 +59,7 @@ setup(
             'Sphinx',
             'repoze.sphinx.autointerface',
             'sphinx_rtd_theme',
-        ]
+        ],
     },
     entry_points=entry_points,
 )
