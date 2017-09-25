@@ -39,3 +39,6 @@ class TestCompat(unittest.TestCase):
         else:
             assert_that(native_(u'こんにちは ichigo', 'utf-8'),
                         is_(u'こんにちは ichigo'))
+
+        assert_that(native_(b'ichigo', 'utf-8'),
+                    is_(u'ichigo'))
