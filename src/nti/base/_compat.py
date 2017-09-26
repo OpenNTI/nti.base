@@ -34,7 +34,7 @@ def bytes_(s, encoding='utf-8', errors='strict'):
 
 def text_(s, encoding='utf-8', err='strict'):
     """
-    Return a unicode representation of an object. 
+    Return a string and unicode version of an object. 
     If the object is an byte sequence it's decoded first
     
     :param object s: The object to get an unicode representation of.
