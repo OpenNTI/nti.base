@@ -17,8 +17,6 @@ import zope.deferredimport.deferredmodule
 
 import zope.deprecation
 
-logger = __import__('logging').getLogger(__name__)
-
 
 def deprecated(replacement=None):  # annotation factory
 
