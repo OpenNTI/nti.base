@@ -9,11 +9,17 @@ from __future__ import absolute_import
 # pylint: disable=W0212,R0904
 
 from hamcrest import is_
+from hamcrest import has_length
 from hamcrest import assert_that
+from hamcrest import has_property
 
 import unittest
 
+from zope import schema
+
+from zope.schema.interfaces import ValidationError
 from zope.schema.interfaces import SchemaNotProvided
+from zope.schema.interfaces import WrongContainedType
 
 from nti.base.schema import FieldValidationMixin
 
@@ -44,7 +50,7 @@ class TestSchema(unittest.TestCase):
         field.validate(10)
         field.validate(0)
         field.validate(1000.0003)
-        
+
     def test_one_arg(self):
         field = FieldValidationMixin()
         field.__name__ = 'foo'
@@ -64,3 +70,26 @@ class TestSchema(unittest.TestCase):
             field._reraise_validation_error(ex, 'value', _raise=True)
         except SchemaNotProvided:
             assert_that(ex.args, is_(('value', '', 'foo')))
+
+    def test_wrong_contained_type(self):
+        class WCT(schema.Float):
+            def _validate(self, value):
+                raise WrongContainedType(("Invalid value",), value)
+
+        class Invalid(FieldValidationMixin, WCT):
+            pass
+        n = Invalid()
+        with self.assertRaises(WrongContainedType) as e:
+            n._validate(100)
+            assert_that(e, has_property('errors', has_length(1)))
+
+    def test_validation_error(self):
+        class ValError(schema.Float):
+            def _validate(self, value):
+                raise ValidationError("Invalid value", value)
+
+        class Invalid(FieldValidationMixin, ValError):
+            pass
+        n = Invalid()
+        with self.assertRaises(ValidationError):
+            n._validate(100)

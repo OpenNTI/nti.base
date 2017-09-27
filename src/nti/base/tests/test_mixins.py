@@ -20,13 +20,21 @@ from nti.testing.matchers import verifiably_provides
 import time
 import unittest
 
+from nti.base.interfaces import INamedFile
 from nti.base.interfaces import ICreatedTime
 from nti.base.interfaces import ILastModified
 
+from nti.base.mixins import FileMixin
+from nti.base.mixins import CreatedTimeMixin
 from nti.base.mixins import CreatedAndModifiedTimeMixin
 
 
 class TestMixins(unittest.TestCase):
+
+    def test_created_time_mixin(self):
+        c = CreatedTimeMixin()
+        assert_that(c, validly_provides(ICreatedTime))
+        assert_that(c, verifiably_provides(ICreatedTime))
 
     def test_plus_extend(self):
         c = CreatedAndModifiedTimeMixin()
@@ -40,3 +48,13 @@ class TestMixins(unittest.TestCase):
 
         c.updateLastModIfGreater(100)
         assert_that(c, has_property('lastModified', is_(t)))
+
+    def test_file_mixin(self):
+        c = FileMixin()
+        c.data = b'data'
+        for iface in (ICreatedTime, ILastModified, INamedFile):
+            assert_that(c, validly_provides(iface))
+            assert_that(c, verifiably_provides(iface))
+
+        with self.assertRaises(NotImplementedError):
+            c.length

@@ -20,6 +20,8 @@ import sys
 import unittest
 
 from nti.base.deprecation import moved
+from nti.base.deprecation import deprecated
+from nti.base.deprecation import hides_warnings
 
 
 class TestDeprecation(unittest.TestCase):
@@ -31,3 +33,21 @@ class TestDeprecation(unittest.TestCase):
         assert_that(sys.modules, has_entry('nti.base.oldmixins', is_(old)))
         # check import
         __import__('nti.base.oldmixins')
+
+        # create modules
+        moved('nti.base._a', 'nti.base._b')
+
+    def test_deprecated(self):
+        @deprecated()
+        class Foo(object):
+            pass
+
+        @deprecated()
+        def foo():
+            pass
+
+    def test_hides_warnings(self):
+        @hides_warnings
+        def foo():
+            pass
+        foo()
