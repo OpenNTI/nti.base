@@ -9,6 +9,7 @@ from __future__ import print_function
 from __future__ import absolute_import
 
 import numbers
+import collections
 
 from zope import schema
 
@@ -70,9 +71,10 @@ class FieldValidationMixin(object):
         except WrongContainedType as e:
             # args[0] will either be a list of Exceptions or a list of tuples, (name, exception),
             # depending who did the validating (dm.zope.schema doing the later)
-            e.errors = [
-                arg[1] if isinstance(arg, tuple) else arg for arg in e.args[0]
-            ]
+            if e.args and isinstance(e.args[0], collections.Iterable):
+                e.errors = [
+                    arg[1] if isinstance(arg, tuple) else arg for arg in e.args[0]
+                ]
             e.value = value
             e.field = self
             raise
