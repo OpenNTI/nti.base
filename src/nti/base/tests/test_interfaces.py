@@ -29,7 +29,7 @@ from nti.base.interfaces import IBoolean
 from nti.base.interfaces import INumeric
 from nti.base.interfaces import IUnicode
 from nti.base.interfaces import IIterable
-
+from nti.base.interfaces import IBasestring
 
 class TestInterfaces(unittest.TestCase):
 
@@ -39,6 +39,10 @@ class TestInterfaces(unittest.TestCase):
 
         sample = u"Aye, indeed my friend."
         assert_that(IUnicode.providedBy(sample), is_(True))
+        assert_that(IBasestring.providedBy(sample), is_(True))
+
+        sample = "Small fire."
+        assert_that(IBasestring.providedBy(sample), is_(True))
 
         sample = True
         assert_that(IBoolean.providedBy(sample), is_(True))
