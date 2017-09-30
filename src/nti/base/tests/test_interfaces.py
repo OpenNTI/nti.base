@@ -15,7 +15,6 @@ from hamcrest import assert_that
 from hamcrest import has_property
 does_not = is_not
 
-import six
 import unittest
 
 from zope import interface
@@ -30,6 +29,7 @@ from nti.base.interfaces import INumeric
 from nti.base.interfaces import IUnicode
 from nti.base.interfaces import IIterable
 from nti.base.interfaces import IBasestring
+
 
 class TestInterfaces(unittest.TestCase):
 
@@ -70,13 +70,8 @@ class TestInterfaces(unittest.TestCase):
         sample.close()
 
     def test_fileio(self):
-        if six.PY3:
-            from io import FileIO, StringIO, TextIOWrapper, BytesIO
-            for cls in (FileIO, StringIO, TextIOWrapper, BytesIO):
-                spec = interface.implementedBy(cls)
-                assert_that(spec,
-                            has_property('__bases__'), contains(IFileIO))
-        else:
-            spec = interface.implementedBy(file)
+        from io import FileIO, StringIO, TextIOWrapper, BytesIO
+        for cls in (FileIO, StringIO, TextIOWrapper, BytesIO):
+            spec = interface.implementedBy(cls)
             assert_that(spec,
                         has_property('__bases__'), contains(IFileIO))

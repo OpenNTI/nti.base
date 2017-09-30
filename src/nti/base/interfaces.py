@@ -9,6 +9,10 @@ from __future__ import print_function
 from __future__ import absolute_import
 
 import six
+from io import FileIO
+from io import BytesIO
+from io import StringIO
+from io import TextIOWrapper
 
 from zope.interface import Attribute
 from zope.interface import Interface
@@ -130,28 +134,25 @@ class IBasestring(Interface):
 [classImplements(x, IBasestring) for x in six.string_types]
 
 
-try:
-    from nti.contentfragments.interfaces import IBytes
-    from nti.contentfragments.interfaces import IString
-    from nti.contentfragments.interfaces import IUnicode
-except ImportError:
-    class IBytes(Interface):
-        """
-        Marker interface for bytes.
-        """
-    classImplements(bytes, IBytes)
+class IBytes(Interface):
+    """
+    Marker interface for bytes.
+    """
+classImplements(bytes, IBytes)
 
-    class IString(Interface):
-        """
-        Marker interface for mutable strings.
-        """
-    classImplements(str, IString)
 
-    class IUnicode(Interface):
-        """
-        Marker interface for mutable unicode strings.
-        """
-    classImplements(six.text_type, IUnicode)
+class IString(Interface):
+    """
+    Marker interface for mutable strings.
+    """
+classImplements(str, IString)
+
+
+class IUnicode(Interface):
+    """
+    Marker interface for mutable unicode strings.
+    """
+classImplements(six.text_type, IUnicode)
 
 
 class INumeric(Interface):
@@ -175,7 +176,8 @@ class IIterable(Interface):
     """
 
     def __iter__():
-        """Return an iterator object.
+        """
+        Return an iterator object.
         """
 
 
@@ -237,12 +239,12 @@ class IFileIO(Interface):
         Read at most size bytes from the file.
         """
 
-    def readline(length=None):
+    def readline(size=-1):
         """
         Read one entire line from the file.
         """
 
-    def readlines(sizehint=0):
+    def readlines(hint=-1):
         """
         Read until EOF using readline() and return a list
         containing the lines thus read.
@@ -253,9 +255,9 @@ class IFileIO(Interface):
         Write a string to the file.
         """
 
-    def writelines(iterable):
+    def writelines(lines):
         """
-        Write a sequence of strings to the file.
+        Write an interable of strings to the file.
         """
 
     def tell():
@@ -268,12 +270,10 @@ class IFileIO(Interface):
         Truncate the file's size.
         """
 
-
-if six.PY3:
-    from io import FileIO, StringIO, TextIOWrapper, BytesIO
-    classImplements(FileIO, IFileIO)
-    classImplements(BytesIO, IFileIO)
-    classImplements(StringIO, IFileIO)
-    classImplements(TextIOWrapper, IFileIO)
-else:
+if six.PY2:
     classImplements(file, IFileIO)
+
+classImplements(FileIO, IFileIO)
+classImplements(BytesIO, IFileIO)
+classImplements(StringIO, IFileIO)
+classImplements(TextIOWrapper, IFileIO)
