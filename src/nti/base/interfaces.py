@@ -122,6 +122,14 @@ class IContentTypeMarker(Interface):
 
 # builtins
 
+
+class IBasestring(Interface):
+    """
+    Marker interface for base strings.
+    """
+[classImplements(x, IBasestring) for x in six.string_types]
+
+
 try:
     from nti.contentfragments.interfaces import IBytes
     from nti.contentfragments.interfaces import IString
@@ -143,22 +151,15 @@ except ImportError:
         """
         Marker interface for mutable unicode strings.
         """
-
-    if six.PY3:
-        classImplements(str, IUnicode)
-    else:
-        classImplements(unicode, IUnicode)
+    classImplements(six.text_type, IUnicode)
 
 
 class INumeric(Interface):
     """
     Marker interface for a numeric value.
     """
-classImplements(int, INumeric)
 classImplements(float, INumeric)
-
-if six.PY2:
-    classImplements(long, INumeric)
+[classImplements(x, INumeric) for x in six.integer_types]
 
 
 class IBoolean(Interface):
