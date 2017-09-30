@@ -17,6 +17,8 @@ import unittest
 
 from zope import schema
 
+from zope.schema.interfaces import TooLong
+from zope.schema.interfaces import TooShort
 from zope.schema.interfaces import ValidationError
 from zope.schema.interfaces import SchemaNotProvided
 from zope.schema.interfaces import WrongContainedType
@@ -70,6 +72,24 @@ class TestSchema(unittest.TestCase):
             field._reraise_validation_error(ex, 'value', _raise=True)
         except SchemaNotProvided:
             assert_that(ex.args, is_(('value', '', 'foo')))
+            
+    def test_too_long_short(self):
+        field = FieldValidationMixin()
+        field.__name__ = 'foo'
+
+        for factory in (TooLong, TooShort):
+            ex = factory()
+            ex.args = (100, 100)
+            try:
+                field._reraise_validation_error(ex, 'value', _raise=True)
+            except factory:
+                assert_that(ex.args[1:], is_(('foo', 'value')))
+                
+    def test_fixup_name__(self):
+        field = FieldValidationMixin()
+        field.__name__ = '__st_foo_st'
+        assert_that(field,
+                    has_property('__fixup_name__', is_('foo')))
 
     def test_wrong_contained_type(self):
         class WCT(schema.Float):
@@ -81,7 +101,7 @@ class TestSchema(unittest.TestCase):
         n = Invalid()
         with self.assertRaises(WrongContainedType) as e:
             n._validate(100)
-            assert_that(e, has_property('errors', has_length(1)))
+        assert_that(e.exception, has_property('errors', has_length(1)))
 
     def test_validation_error(self):
         class ValError(schema.Float):
