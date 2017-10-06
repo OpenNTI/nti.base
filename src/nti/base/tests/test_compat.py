@@ -36,7 +36,7 @@ class TestCompat(unittest.TestCase):
         if six.PY2:
             assert_that(native_(u'こんにちは ichigo', 'utf-8'),
                         is_('\xe3\x81\x93\xe3\x82\x93\xe3\x81\xab\xe3\x81\xa1\xe3\x81\xaf ichigo'))
-        else:
+        else:  # pragma: no cover
             assert_that(native_(u'こんにちは ichigo', 'utf-8'),
                         is_(u'こんにちは ichigo'))
 
