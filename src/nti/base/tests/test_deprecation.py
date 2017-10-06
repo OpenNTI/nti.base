@@ -45,6 +45,7 @@ class TestDeprecation(unittest.TestCase):
         @deprecated()
         def foo():
             pass
+        foo()
 
     def test_hides_warnings(self):
         @hides_warnings
