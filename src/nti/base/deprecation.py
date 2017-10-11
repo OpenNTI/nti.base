@@ -22,7 +22,7 @@ def deprecated(replacement=None):  # annotation factory
 
     def outer(oldfun):
         im_class = getattr(oldfun, 'im_class', None)
-        if im_class:
+        if im_class:  # pragma: no cover
             n = '%s.%s.%s' % (im_class.__module__,
                               im_class.__name__,
                               oldfun.__name__)
@@ -30,7 +30,7 @@ def deprecated(replacement=None):  # annotation factory
             n = oldfun.__name__
 
         msg = "%s is deprecated" % n
-        if replacement is not None:
+        if replacement is not None:  # pragma: no cover
             msg += "; use %s instead" % (replacement.__name__)
         return zope.deprecation.deprecate(msg)(oldfun)
     return outer
@@ -48,9 +48,10 @@ class _warnings(object):
         if zope.deprecation.__show__():
             warnings.warn(msg, typ, stacklevel + 1)
 
-    def __getattr__(self, name):
+    def __getattr__(self, name):  # pragma: no cover
         # Let everything else flow through to the real module
         return getattr(warnings, name)
+
 
 zope.deprecation.deprecation.__dict__['warnings'] = _warnings()
 

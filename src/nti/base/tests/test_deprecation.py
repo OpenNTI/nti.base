@@ -47,6 +47,12 @@ class TestDeprecation(unittest.TestCase):
             pass
         foo()
 
+        class A(object):
+            @deprecated()
+            def eat(self):
+                pass
+        A().eat()
+
     def test_hides_warnings(self):
         @hides_warnings
         def foo():
