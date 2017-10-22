@@ -13,6 +13,7 @@ from io import FileIO
 from io import BytesIO
 from io import StringIO
 from io import TextIOWrapper
+from io import BufferedRWPair
 
 from zope.interface import Attribute
 from zope.interface import Interface
@@ -277,3 +278,4 @@ classImplements(FileIO, IFileIO)
 classImplements(BytesIO, IFileIO)
 classImplements(StringIO, IFileIO)
 classImplements(TextIOWrapper, IFileIO)
+classImplements(BufferedRWPair, IFileIO)

@@ -70,8 +70,8 @@ class TestInterfaces(unittest.TestCase):
         sample.close()
 
     def test_fileio(self):
-        from io import FileIO, StringIO, TextIOWrapper, BytesIO
-        for cls in (FileIO, StringIO, TextIOWrapper, BytesIO):
+        from io import FileIO, StringIO, TextIOWrapper, BytesIO, BufferedRWPair
+        for cls in (FileIO, StringIO, TextIOWrapper, BytesIO, BufferedRWPair):
             spec = interface.implementedBy(cls)
             assert_that(spec,
                         has_property('__bases__'), contains(IFileIO))
