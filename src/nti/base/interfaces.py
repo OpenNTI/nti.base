@@ -8,7 +8,10 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import absolute_import
 
+# pylint: disable=inherit-non-class,expression-not-assigned
+
 import six
+
 from io import FileIO
 from io import BytesIO
 from io import StringIO
