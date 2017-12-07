@@ -36,6 +36,7 @@ class ModifiedTimeMixin(object):
 
     lastModified = 0
 
+    # pylint: disable=useless-super-delegation
     def __init__(self, *args, **kwargs):
         super(ModifiedTimeMixin, self).__init__(*args, **kwargs)
 

@@ -63,7 +63,7 @@ class FieldValidationMixin(object):
             e.value = value
         if _raise:
             raise e
-        raise
+        raise  # pylint: disable=misplaced-bare-raise
 
     def _validate(self, value):
         try:
