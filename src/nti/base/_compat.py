@@ -43,6 +43,8 @@ def text_(s, encoding='utf-8', err='strict'):
     """
     s = s.decode(encoding, err) if isinstance(s, bytes) else s
     return six.text_type(s) if s is not None else None
+
+
 str_ = text_  # alias
 
 
@@ -67,7 +69,7 @@ if PY3:  # pragma: no cover
         if isinstance(s, six.text_type):
             return s
         return str(s, encoding, errors)
-else:
+else:  # pragma: no cover
     def native_(s, encoding='latin-1', errors='strict'):
         """ 
         If ``s`` is an instance of ``text_type``, return

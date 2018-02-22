@@ -274,7 +274,7 @@ class IFileIO(Interface):
         Truncate the file's size.
         """
 
-if six.PY2:
+if six.PY2:  # pragma: no cover
     classImplements(file, IFileIO)
 
 classImplements(FileIO, IFileIO)
