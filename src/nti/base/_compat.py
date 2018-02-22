@@ -51,11 +51,13 @@ if PY3:  # pragma: no cover
         if isinstance(s, six.text_type):
             s = s.encode('ascii')
         return str(s, 'ascii', 'strict')
+    ascii_ = ascii_native_
 else:  # pragma: no cover
     def ascii_native_(s):
         if isinstance(s, six.text_type):
             s = s.encode('ascii')
         return str(s)
+    ascii_ = ascii_native_
 
 
 if PY3:  # pragma: no cover
