@@ -43,8 +43,6 @@ def text_(s, encoding='utf-8', err='strict'):
     """
     s = s.decode(encoding, err) if isinstance(s, bytes) else s
     return six.text_type(s) if s is not None else None
-
-
 str_ = text_  # alias
 
 
