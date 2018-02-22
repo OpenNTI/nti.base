@@ -67,7 +67,7 @@ if PY3:  # pragma: no cover
         if isinstance(s, six.text_type):
             return s
         return str(s, encoding, errors)
-else:
+else:  # pragma: no cover
     def native_(s, encoding='latin-1', errors='strict'):
         """ 
         If ``s`` is an instance of ``text_type``, return

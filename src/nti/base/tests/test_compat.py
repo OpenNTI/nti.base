@@ -34,7 +34,7 @@ class TestCompat(unittest.TestCase):
         assert_that(ascii_native_('aizen'), is_('aizen'))
 
     def test_native(self):
-        if six.PY2:
+        if six.PY2:  # pragma: no cover
             assert_that(native_(u'こんにちは ichigo', 'utf-8'),
                         is_('\xe3\x81\x93\xe3\x82\x93\xe3\x81\xab\xe3\x81\xa1\xe3\x81\xaf ichigo'))
         else:  # pragma: no cover
