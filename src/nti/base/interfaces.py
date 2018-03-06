@@ -121,13 +121,6 @@ class IConstrained(Interface):
     Marker interface for objects that are constrained
     """
 
-
-class IContentTypeMarker(Interface):
-    """
-    Marker interface for deriving mimetypes from class names.
-    """
-
-
 # builtins
 
 
