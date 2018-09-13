@@ -56,7 +56,7 @@ setup(
         'zope.deferredimport',
         'zope.deprecation',
         'zope.interface',
-        'zope.schema'
+        'zope.schema',
     ],
     extras_require={
         'test': TESTS_REQUIRE,
