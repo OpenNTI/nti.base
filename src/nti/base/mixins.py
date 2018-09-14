@@ -67,6 +67,7 @@ class CreatedAndModifiedTimeMixin(CreatedTimeMixin, ModifiedTimeMixin):
 @interface.implementer(INamedFile)
 class FileMixin(CreatedAndModifiedTimeMixin):
 
+    # pylint: disable=keyword-arg-before-vararg
     def __init__(self, contentType='', filename=None, *args, **kwargs):
         self.filename = filename
         self.contentType = contentType
